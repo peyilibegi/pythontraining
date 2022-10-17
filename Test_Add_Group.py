@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from selenium import webdriver
 
-driver = webdriver.Chrome('C:\\Windows\SysWOW64\chromedriver.exe')
+driver = webdriver.Chrome('C:\\Windows\System32\chromedriver.exe')
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
