@@ -13,18 +13,21 @@ class UntitledTestCase(unittest.TestCase):
         self.dw = webdriver.Firefox()
         self.dw.implicitly_wait(30)
 
-    def test_untitled_test_case(self):
+    def test_add_group(self):
         dw = self.dw
         self.open_home_page(dw)
-
-        self.login(dw)
-
+        self.login(dw, username="admin", password="secret")
         self.open_groups_page(dw)
-
-        self.create_group(dw)
-
+        self.create_group(dw, name="kek1", header="kek2", footer="Kek3")
         self.return_groups_page(dw)
-
+        self.logout(dw)
+    def test_add_empty_group(self):
+        dw = self.dw
+        self.open_home_page(dw)
+        self.login(dw, username="admin", password="secret")
+        self.open_groups_page(dw)
+        self.create_group(dw, name="", header="", footer="")
+        self.return_groups_page(dw)
         self.logout(dw)
 
     def logout(self, dw):
@@ -33,25 +36,25 @@ class UntitledTestCase(unittest.TestCase):
     def return_groups_page(self, dw):
         dw.find_element_by_link_text("groups").click()
 
-    def create_group(self, dw):
+    def create_group(self, dw, name, header, footer):
         dw.find_element_by_name("group_name").click()
         dw.find_element_by_name("group_name").clear()
-        dw.find_element_by_name("group_name").send_keys("kek3")
+        dw.find_element_by_name("group_name").send_keys(name)
         dw.find_element_by_name("group_header").clear()
-        dw.find_element_by_name("group_header").send_keys("kek3")
+        dw.find_element_by_name("group_header").send_keys(header)
         dw.find_element_by_name("group_footer").clear()
-        dw.find_element_by_name("group_footer").send_keys("kek3")
+        dw.find_element_by_name("group_footer").send_keys(footer)
         dw.find_element_by_name("submit").click()
 
     def open_groups_page(self, dw):
         dw.find_element_by_name("new").click()
 
-    def login(self, dw):
+    def login(self, dw, username, password):
         dw.find_element_by_name("user").clear()
-        dw.find_element_by_name("user").send_keys("admin")
+        dw.find_element_by_name("user").send_keys(username)
         dw.find_element_by_name("pass").click()
         dw.find_element_by_name("pass").clear()
-        dw.find_element_by_name("pass").send_keys("secret")
+        dw.find_element_by_name("pass").send_keys(password)
         dw.find_element_by_xpath("//input[@value='Login']").click()
 
     def open_home_page(self, dw):
