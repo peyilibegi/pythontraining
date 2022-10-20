@@ -22,13 +22,13 @@ class UntitledTestCase(unittest.TestCase):
         self.return_groups_page(dw)
         self.logout(dw)
     def test_add_empty_group(self):
-        dw = self.dw
-        self.open_home_page(dw)
-        self.login(dw, username="admin", password="secret")
-        self.open_groups_page(dw)
-        self.create_group(dw, name="", header="", footer="")
-        self.return_groups_page(dw)
-        self.logout(dw)
+        wd = self.dw
+        self.open_home_page(wd)
+        self.login(wd, username="admin", password="secret")
+        self.open_groups_page(wd)
+        self.create_group(wd, name="", header="", footer="")
+        self.return_groups_page(wd)
+        self.logout(wd)
 
     def logout(self, dw):
         dw.find_element_by_link_text("Logout").click()
