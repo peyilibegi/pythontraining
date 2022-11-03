@@ -6,7 +6,7 @@ from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest, time, re
-from contact import contact
+from contact import Contact
 
 
 class AppDynamicsJob(unittest.TestCase):
@@ -20,7 +20,7 @@ class AppDynamicsJob(unittest.TestCase):
         driver = self.driver
         self.open_home_page(driver)
         self.login(driver,user="admin", password="secret")
-        self.add_contact(driver, contact(firstname="a", middlename="b", lastname="c", nickname="123", title='1', company='1', address='1', home='1', mobile='2', work='3', fax="4", email='1', homepage='5', bday='3', bmonth='May', byear='1990', secaddress='2', sechome='3', notes='2'))
+        self.add_contact(driver, Contact(firstname="a", middlename="b", lastname="c", nickname="123", title='1', company='1', address='1', home='1', mobile='2', work='3', fax="4", email='1', homepage='5', bday='3', bmonth='May', byear='1990', secaddress='2', sechome='3', notes='2'))
         self.logout(driver)
 
     def logout(self, driver):
